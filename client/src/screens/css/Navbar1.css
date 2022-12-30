@@ -1,0 +1,33 @@
+.head{
+    padding: 20px;
+    padding-bottom: 5px;
+}
+
+.head>h2{
+    font-size: 35px;
+    font-weight: bold;
+}
+
+#navMenu{
+    margin-top: 10px;
+    height: 44px;
+    border-radius: 5px;
+    background: linear-gradient(90deg, rgba(46,102,20,1) 0%, rgba(144,181,149,1) 53%, rgba(231,251,255,0) 100%);
+}
+
+#navMenu> li>a{
+    /* height: 40px; */
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+#navMenu> li :hover{
+background-color: rgb(113, 129, 86);
+overflow: hidden;
+border-radius: 20px;
+}
+
+li>a{
+    text-decoration: none;
+}
