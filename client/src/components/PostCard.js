@@ -75,8 +75,10 @@ const PostCard = (props) => {
     e.preventDefault();
 
     const content = e.target.content.value;
-    await updatePost(post._id, isLoggedIn(), { content });
-    setPost({ ...post, content, edited: true });
+    const title = e.target.title.value;
+
+    await updatePost(post._id, isLoggedIn(), { content, title });
+    setPost({ ...post, content, title, edited: true });
     setEditing(false);
   };
 
@@ -148,7 +150,19 @@ const PostCard = (props) => {
               </Box>
             </HorizontalStack>
 
-            <Typography
+            
+
+            {preview !== "secondary" &&
+              (editing ? (
+                <ContentUpdateEditor
+                  handleSubmit={handleSubmit}
+                  originalContent={post.content}
+                  originaltitle={post.title}
+
+                />
+              ) : (
+                <div>
+                  <Typography
               variant="h5"
               gutterBottom
               sx={{ overflow: "hidden", mt: 1, maxHeight: 125 }}
@@ -156,14 +170,6 @@ const PostCard = (props) => {
             >
               Title: {post.title}
             </Typography>
-
-            {preview !== "secondary" &&
-              (editing ? (
-                <ContentUpdateEditor
-                  handleSubmit={handleSubmit}
-                  originalContent={post.content}
-                />
-              ) : (
                 <Box
                   maxHeight={maxHeight}
                   overflow="hidden"
@@ -171,6 +177,8 @@ const PostCard = (props) => {
                 >
                   Content: {post.content}
                 </Box>
+                
+               </div>
               ))}
 
             <HorizontalStack sx={{ mt: 1 }}>

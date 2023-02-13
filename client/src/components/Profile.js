@@ -11,7 +11,7 @@ import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { AiFillEdit } from "react-icons/ai";
 import { isLoggedIn } from "../helpers/authHelper";
-import ContentUpdateEditor from "./ContentUpdateEditor";
+import Userupdate from "./Userupdate";
 import Footer from "./Footer";
 import Loading from "./Loading";
 import UserAvatar from "./UserAvatar";
@@ -42,7 +42,7 @@ const Profile = (props) => {
 
           {props.editing ? (
             <Box>
-              <ContentUpdateEditor
+              <Userupdate
                 handleSubmit={props.handleSubmit}
                 originalContent={user.biography}
                 validate={props.validate}

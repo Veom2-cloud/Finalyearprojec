@@ -1,8 +1,9 @@
 import { Box, Button, Stack, TextField } from "@mui/material";
 import React, { useState } from "react";
 
-const ContentUpdateEditor = (props) => {
-  const [content, setContent] = useState(props.originalContent);
+const Userupdate = (props) => {
+    const [content, setContent] = useState(props.originalContent);
+
   const [title, settitle] = useState(props.originaltitle);
 
   const [error, setError] = useState("");
@@ -10,9 +11,7 @@ const ContentUpdateEditor = (props) => {
   const handleChange = (e) => {
     setContent(e.target.value);
   };
-  const handleC = (e) => {
-    settitle(e.target.value)
-  };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,18 +35,7 @@ const ContentUpdateEditor = (props) => {
   return (
     <Box component="form" onSubmit={handleSubmit}>
       <Stack>
-      <TextField
-          value={title}
-          fullWidth
-          margin="normal"
-          placeholder="title"
-          name="title"
-          sx={{ backgroundColor: "white" }}
-          onChange={handleC}
-          error={error.length !== 0}
-          helperText={error}
-          multiline
-        />
+      
         <TextField
           value={content}
           fullWidth
@@ -72,4 +60,4 @@ const ContentUpdateEditor = (props) => {
   );
 };
 
-export default ContentUpdateEditor;
+export default Userupdate;

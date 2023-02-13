@@ -17,7 +17,7 @@ import {
 } from "react-router-dom";
 import theme from "./theme";
 import "./App.css";
-
+import AdminRoute from "./components/Adminroute";
 import PostView from "./components/views/PostView";
 import FilesList from "./screens/Filelist";
 import Additem from "./screens/Additem";
@@ -35,7 +35,11 @@ import SearchView from "./components/views/SearchView";
 import MessengerView from "./components/views/MessengerView";
 import Homescreen from "./screens/Homescreen";
 import Adminscreen from "./screens/Adminscreen";
+import Superadminscreen from "./screens/Superadmin";
+import Useredit from "./screens/Useredit";
+import SuperadminRoute from "./components/Superadminroute";
 import { initiateSocketConnection, socket } from "./helpers/socketHelper";
+
 import { useEffect } from "react";
 import { BASE_URL } from "./config";
 import { io } from "socket.io-client";
@@ -49,13 +53,78 @@ function App() {
         <BrowserRouter>
           <CssBaseline />
           <Routes>
-            <Route path="/admin" element={<Userslist />} />
-            <Route path="/admin/list" element={<FilesList />} />
-            <Route path="/admin/userslist" element={<Userslist />} />
-            <Route path="/admin/orderslist" element={<Orderslist />} />
-            <Route path="/admin/itemlist" element={<Itemslist />} />
-            <Route path="/admin/additem" element={<Additem />} />
-            <Route path="/admin/edititem/:itemid" element={<Edititem />} />
+            <Route
+              path="/superadmin"
+              element={
+                <PrivateRoute>
+                  <SuperadminRoute>
+                    <Userslist />
+                  </SuperadminRoute>
+                </PrivateRoute>
+              }
+            />
+
+            <Route
+              path="/admin/list"
+              element={
+                <PrivateRoute>
+                  <AdminRoute>
+                    <FilesList />
+                  </AdminRoute>
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/admin/orderslist"
+              element={
+                <PrivateRoute>
+                  <AdminRoute>
+                    <Orderslist />
+                  </AdminRoute>
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/admin"
+              element={
+                <PrivateRoute>
+                  <AdminRoute>
+                    <Itemslist />
+                  </AdminRoute>
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/admin/additem"
+              element={
+                <PrivateRoute>
+                  <AdminRoute>
+                    <Additem />
+                  </AdminRoute>
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/admin/edititem/:itemid"
+              element={
+                <PrivateRoute>
+                  <AdminRoute>
+                    <Edititem />
+                  </AdminRoute>
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/superadmin/edituser/:id"
+              element={
+                <PrivateRoute>
+                  <SuperadminRoute>
+                    <Useredit />
+                  </SuperadminRoute>
+                </PrivateRoute>
+              }
+            />
+
             <Route
               path="/"
               element={
@@ -64,7 +133,16 @@ function App() {
                 </PrivateRoute>
               }
             />
-            <Route path="/posts/:id" element={<PostView />} />
+
+            <Route
+              path="/posts/:id"
+              element={
+                <PrivateRoute>
+                  {" "}
+                  <PostView />
+                </PrivateRoute>
+              }
+            />
             <Route
               path="/posts/create"
               element={
@@ -81,12 +159,32 @@ function App() {
                 </PrivateRoute>
               }
             />
-            <Route path="/buy" element={<Homescreen />} />
-            <Route path="/search" element={<SearchView />} />
-            <Route path="/users/:id" element={<ProfileView />} />
+            <Route
+              path="/buy"
+              element={
+                <PrivateRoute>
+                  <Homescreen />{" "}
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/search"
+              element={
+                <PrivateRoute>
+                  <SearchView />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/users/:id"
+              element={
+                <PrivateRoute>
+                  <ProfileView />
+                </PrivateRoute>
+              }
+            />
             <Route path="/login" element={<LoginView />} />
             <Route path="/signup" element={<SignupView />} />
-            <Route path="/admin" element={<Adminscreen />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

@@ -20,6 +20,7 @@ import HorizontalStack from "./util/HorizontalStack";
 import "./css/FindUsers.css";
 import { follows, unfollow } from "../api/users";
 import { useDispatch, useSelector } from "react-redux";
+import Footer from "./Footer";
 
 const FindUsers = () => {
   
@@ -134,6 +135,8 @@ const { user} = userstate;
           ))
         )}
       </Stack>
+      <Footer />
+
     </Card>
   );
 };

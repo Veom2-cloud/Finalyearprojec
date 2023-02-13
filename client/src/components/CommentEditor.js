@@ -60,9 +60,6 @@ const CommentEditor = ({ label, comment, addComment, setReplying }) => {
           <Typography variant="h5">
             {comment ? <>Reply</> : <>Comment</>}
           </Typography>
-          <Link to="https://commonmark.org/help/" target="_blank">
-            Markdown Help
-          </Link>
         </HorizontalStack>
 
         <Box component="form" onSubmit={handleSubmit}>

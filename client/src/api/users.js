@@ -84,11 +84,31 @@ const updateUser = async (user, data) => {
   }
 };
 
-const deleteuser = async (userId, user) => {
+const deletes = async (id) => {
   try {
-    const res = await fetch(BASE_URL + "api/users/" + userId, {
+    const res = await fetch(BASE_URL + "api/users/" + id, {
       method: "DELETE",
     
+    });
+    return res.json();
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const update = async (user, data) => {
+  
+  
+  try {
+    const res = await fetch(BASE_URL + "api/users/update/" + user._id, {
+      method: "PATCH",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "x-access-token": user.token,
+      },
+
+      body: JSON.stringify(data),
     });
     return res.json();
   } catch (err) {
@@ -113,6 +133,24 @@ export const follows = async (userId, followingId) => {
     console.log(err)
   }
 }
+
+const finduserbyid = async (userId) => {
+  
+  
+  try {
+    const res = await fetch(BASE_URL + "api/users/getuserbyid/" + userId, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+
+    });
+    return res.json();
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 const unfollow = async (userId, followingId) => {
   try {
@@ -152,4 +190,4 @@ const getfollowing = async (query) => {
 };
 
 
-export { signup, login, getUser, getRandomUsers, updateUser, deleteuser , getAllUsers, unfollow , getfollowing};
+export { signup, login, getUser, getRandomUsers, updateUser, deletes , getAllUsers, unfollow , getfollowing, update, finduserbyid};

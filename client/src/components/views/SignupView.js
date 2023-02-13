@@ -43,7 +43,7 @@ const SignupView = () => {
       setServerError(data.error);
     } else {
       loginUser(data);
-      navigate("/");
+      navigate("/login");
     }
   };
 

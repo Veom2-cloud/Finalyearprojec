@@ -8,12 +8,12 @@ import Footer from "./Footer";
 import Loading from "./Loading";
 import PostCard from "./PostCard";
 import TopPosts from "./TopPosts";
+import "./sidebar.css"
 
 const Sidebar = () => {
   return (
     <Stack spacing={2}>
-      <FindUsers  />
-      <Footer />
+      <FindUsers />
     </Stack>
   );
 };

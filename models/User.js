@@ -35,6 +35,10 @@ const UserSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    usertype:{
+      type: String,
+      default: "user"
+    },
     followers: [],
     following: [],
   },

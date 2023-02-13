@@ -67,7 +67,7 @@ const getPost = async (req, res) => {
 const updatePost = async (req, res) => {
   try {
     const postId = req.params.id;
-    const { content, userId, isAdmin } = req.body;
+    const { content, userId, isAdmin, title } = req.body;
 
     const post = await Post.findById(postId);
 
@@ -80,6 +80,7 @@ const updatePost = async (req, res) => {
     }
 
     post.content = content;
+    post.title = title;
     post.edited = true;
 
     await post.save();

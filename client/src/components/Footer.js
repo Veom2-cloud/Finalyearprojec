@@ -26,23 +26,10 @@ const Footer = () => {
     document.getElementById("openbutton").style.display = "block";
   }
 
-  // document.addEventListener("click", function handleClickOutsideBox(event) {
-  //   const box = document.getElementById("myForm");
-
-  //   if (!box.contains(event.target) && msg) {
-  //     box.style.display = "none";
-  //     setmsg(false);
-  //     console.log("inside event@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-  //   }
-  // });
 
   return (
-    <div>
-      {/* <Box pb={3}>
-        <Card>
-          <Copyright />
-        </Card>
-      </Box> */}
+    <div id="footers">
+
       <button className="open-button" id="openbutton" onClick={openForm}>
         Get your Items
       </button>
@@ -57,7 +44,6 @@ const Footer = () => {
           headerText="Get your items"
         />
 
-            {/* <button type="button" id="closebutton" onClick={closeForm}>Close</button> */}
             <IconButton color="primary" id="closebutton" onClick={closeForm}>
                 <CloseIcon/>
               </IconButton>

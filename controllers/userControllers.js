@@ -13,7 +13,9 @@ const getUserDict = (token, user) => {
     userId: user._id,
     isAdmin: user.isAdmin,
     email: user.email,
-    currentuser: user
+    currentuser: user,
+    usertype: user.usertype
+
   };
 };
 
@@ -21,6 +23,7 @@ const buildToken = (user) => {
   return {
     userId: user._id,
     isAdmin: user.isAdmin,
+    usertype: user.usertype
   };
 };
 
@@ -195,7 +198,27 @@ const getFollowing = async (req, res) => {
   }
 };
 
+const update = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const {usertype } = req.body;
+    const user = await User.findById(userId);
 
+    if (!user) {
+      throw new Error("User does not exist");
+    }
+
+    if (typeof usertype == "string") {
+      user.usertype = usertype;
+    }
+
+    await user.save();
+
+    return res.status(200).json({ success: true });
+  } catch (err) {
+    return res.status(400).json({ error: err.message });
+  }
+};
 
 
 const getUser = async (req, res) => {
@@ -271,10 +294,10 @@ const getRandomIndices = (size, sourceSize) => {
 };
 
 const deletes = async (req, res) => {
-  const { userId, isAdmin } = req.body;
+  const userId = req.params.id;
 
   try {
-    const user = await Post.findById(userId);
+    const user = await User.findById(userId);
 
     await user.remove();
       res.send('User Deleted Successfully')
@@ -296,6 +319,18 @@ const getAllUsers = async (req, res) => {
   }
 };
 
+const getuserbyid = async (req, res) => {
+  try {
+    const userid = req.body.userid
+    const user = await User.findOne({userid})
+    return res.send(user);
+  } catch (err) {
+    console.log(err);
+    return res.status(400).json({ error: err.message });
+  }
+};
+
+
 
 module.exports = {
   register,
@@ -308,5 +343,7 @@ module.exports = {
   getUser,
   getRandomUsers,
   updateUser,
-  getAllUsers
+  getAllUsers,
+  update,
+  getuserbyid
 };

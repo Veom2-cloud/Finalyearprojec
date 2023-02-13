@@ -78,7 +78,6 @@ const LoginView = () => {
             onChange={handleChange}
             type="password"
           />
-          Forgotten Password ? <Link to ="/forgettenpassword">Reset it</Link>
           <ErrorAlert error={serverError} />
           <Button type="submit" fullWidth variant="contained" sx={{ my: 2 }}>
             Login

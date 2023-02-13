@@ -67,7 +67,7 @@ export const editItem=(editeditem)=>async dispatch=>{
         const response= await axios.post('/api/items/edititem' , {editeditem})
         console.log(response);
         dispatch({type:'EDIT_ITEM_SUCCESS'})
-        window.location.href='/admin/itemlist'
+        window.location.href='/admin'
     } catch (error) {
         dispatch({type:'EDIT_ITEM_FAILED' , payload : error})
     }

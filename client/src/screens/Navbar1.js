@@ -10,7 +10,7 @@ import Itemslist from "./Itemslist";
 import Userslist from "./Userslist";
 import "./css/Navbar1.css"
 
-export default function Adminscreen() {
+export default function Navbar1() {
   const userstate = useSelector((state) => state.loginUserReducer);
   const { user } = userstate;
   const dispatch = useDispatch();
@@ -30,13 +30,9 @@ export default function Adminscreen() {
               Ustar
             </Link>
             </li>
+            
             <li>
-              <Link to={"/admin/userslist"} style={{ color: "white" }}>
-                Users List
-              </Link>
-            </li>
-            <li>
-              <Link to={"/admin/itemlist"} style={{ color: "white" }}>
+              <Link to={"/admin"} style={{ color: "white" }}>
                 Item List
               </Link>
             </li>

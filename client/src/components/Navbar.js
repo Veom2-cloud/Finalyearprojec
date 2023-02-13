@@ -131,8 +131,15 @@ const Navbar = () => {
               <IconButton component={Link} to={"/messenger"}>
                 <AiFillMessage />
               </IconButton>
-              {user.userId == "63a8aad8b9b10ea377fbf4c8" ? (
+              {user.userId == "63b02c400483b301cf061906" ? (
                    <IconButton component={Link} to={"/admin"}>
+                   <AdminPanelSettingsIcon />
+                 </IconButton>
+                  ) : (
+                    ""
+                  )}
+                  {user.userId == "63b024b920f227754490c428" ? (
+                   <IconButton component={Link} to={"/superadmin"}>
                    <AdminPanelSettingsIcon />
                  </IconButton>
                   ) : (

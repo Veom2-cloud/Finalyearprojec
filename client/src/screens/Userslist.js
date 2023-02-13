@@ -1,9 +1,8 @@
-
 import Loading from "../components/buypart/Loading";
 import React, { useEffect, useState } from "react";
 import {Link} from "react-router-dom"
-import Navbar1 from "./Navbar1"
-import { getRandomUsers, getAllUsers, deleteuser} from "../api/users";
+import Navbar2 from "./Navbar2"
+import { getRandomUsers, getAllUsers, deletes} from "../api/users";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./css/Navmenu.css"
@@ -26,11 +25,16 @@ const FindUsers = () => {
     fetchUsers();
   }, []);
 
+  const handledelete = async (id)=>{
+    deletes(id) 
+    alert("deleted")
+    window.location.href="/admin"
+  }
 
 
   return (
     <div className="adminPage">
-      <Navbar1/>
+      <Navbar2/>
       <h1 className="text-center">Users list</h1>
       {loading && <Loading />}
       <table className="table table-stripedtable-bordered table-responsive-sm">
@@ -39,6 +43,7 @@ const FindUsers = () => {
             <th>User Id</th>
             <th>Name</th>
             <th>Email</th>
+            <th>Action</th>
           </tr>
         </thead>
 
@@ -50,6 +55,17 @@ const FindUsers = () => {
                   <td>{user._id}</td>
                   <td>{user.username}</td>
                   <td>{user.email}</td> 
+                  <td>
+                    <i
+                      className="fa fa-trash m-1"
+                      onClick={() => {
+                        handledelete(user._id);
+                      }}
+                    ></i>
+                   <Link to={`/superadmin/edituser/${user._id}`}>
+                      <i className="fa fa-edit m-1"></i>
+                    </Link>
+                  </td>
                 </tr>
               );
             })}
