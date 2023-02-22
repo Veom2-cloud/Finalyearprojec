@@ -1,21 +1,20 @@
 import React, {useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deliverOrder, getAllOrders } from "../actions/orderActions";
-import Error from "../components/buypart/Error";
-import Loading from "../components/buypart/Loading";
-import Navbar1 from "./Navbar1"
-import "./css/Navmenu.css"
-import Filterorder from "../components/buypart/Filterorder";
+import { getAllCanteenOrders, deliverCanteenOrder } from "../../actions/Canteenorder";
+import Error from "../../components/buypart/Error";
+import Loading from "../../components/buypart/Loading";
+import Navbar3 from "./Navbar3"
+import "../css/Navmenu.css"
 
 
 export default function Orderslist() {
   const dispatch = useDispatch();
-  const getordersstate = useSelector((state) => state.getAllOrdersReducer);
-  const { loading, error, orders } = getordersstate;
+  const getordersstate = useSelector((state) => state.getAllCanteenOrdersReducer);
+  const { loading, error, canteenorders } = getordersstate;
  
 
   useEffect(() => {
-    dispatch(getAllOrders());
+    dispatch(getAllCanteenOrders());
   }, []);
 
   window.setTimeout( function() {
@@ -24,7 +23,7 @@ export default function Orderslist() {
 
   return (
     <div className="adminPage">
-      <Navbar1/>
+      <Navbar3/>
     
       {loading && <Loading />}
       <h2 className="text-center">Orders List</h2>
@@ -47,34 +46,34 @@ export default function Orderslist() {
 
         <tbody>
        
-          {orders && orders.filter( function(order){
-            return order.isDelivered == false
-          }).map((order) => {
+          {canteenorders && canteenorders.filter( function(canteenorder){
+            return canteenorder.isDelivered == false
+          }).map((canteenorder) => {
              
               return (
-                <tr key={order._id}>
-                                    <td>{order.name}</td>
+                <tr key={canteenorder._id}>
+                                    <td>{canteenorder.name}</td>
 
-                  <td>{order.orderItems.map(item=>{
+                  <td>{canteenorder.ordercanteenItems.map(item=>{
                                         return <div>
                                             <p>{item.name} : {item.quantity}  </p>
                                         </div>
                                     })}</td>
                                     
-                  <td>{order.orderAmount}</td>
-                  <td>{order.date}</td>
-                  <td>{order.time}</td>
-                  <td>{order.updatedTime}</td>
-                  <td>{order.otp}</td>
+                  <td>{canteenorder.ordercanteenAmount}</td>
+                  <td>{canteenorder.date}</td>
+                  <td>{canteenorder.time}</td>
+                  <td>{canteenorder.updatedTime}</td>
+                  <td>{canteenorder.otp}</td>
                   
                   <td>
-                  {order.isPaid == true ? "YES" : "NO"}
+                  {canteenorder.isPaid == true ? "YES" : "NO"}
                   </td>
                   <td>
                   <i
                       className="fa fa-check m-1"
                       onClick={() => {
-                        dispatch(deliverOrder(order._id));
+                        dispatch(deliverCanteenOrder(canteenorder._id));
                       }}
                     ></i>
                   </td>

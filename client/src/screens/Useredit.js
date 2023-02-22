@@ -8,21 +8,16 @@ import Success from "../components/buypart/Success";
 import Navbar2 from "./Navbar2"
 import "./css/Navmenu.css"
 export default function Edititem({ match }) {
+  const { userId } = useParams();
+  console.log(userId)
 
-  const { userid } = useParams();
   const [username, setusername] = useState("");
  const [email, setemail] = useState()
   const [usertype, setusertype] = useState("");
 
   const dispatch = useDispatch();
-
-  const getitembyidstate = useSelector((state) => state.getItemByIdReducer);
-
-  const {user, error, loading } = getitembyidstate;
-
-
-
-
+  
+  
 
   return (
     <div className="adminPage">
@@ -36,7 +31,7 @@ export default function Edititem({ match }) {
           <input
             className="form-control"
             type="name"
-            placeholder="username"
+            placeholder="Name"
             value={username}
             onChange={(e) => {
               setusername(e.target.value);

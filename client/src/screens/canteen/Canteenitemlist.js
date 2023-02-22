@@ -1,24 +1,25 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteItem, getAllItems } from "../actions/itemActions";
-import Error from "../components/buypart/Error";
-import Loading from "../components/buypart/Loading";
-import Navbar1 from "./Navbar1"
-import "./css/Navmenu.css"
-export default function Itemslist() {
+import { deletecanteenItem,getAllCanteenItems } from "../../actions/Canteenitemactions";
+import Error from "../../components/buypart/Error";
+import Loading from "../../components/buypart/Loading";
+import Navbar3 from "./Navbar3"
+import "../css/Navbar1.css"
+export default function Canteenitemlist() {
   const dispatch = useDispatch();
 
-  const itemsstate = useSelector((state) => state.getAllItemsReducer);
+  const canteenitemsstate = useSelector((state) => state.getAllCanteenitemsReducer);
 
-  const { items, error, loading } = itemsstate;
-  
+  const { canteenitems, error, loading } = canteenitemsstate;
+
   useEffect(() => {
-    dispatch(getAllItems());
+    dispatch(getAllCanteenItems());
   }, []);
+  
   return (
     <div className="adminPage">
-      <Navbar1/>
+      <Navbar3/>
       <h2 className="text-center">Items List</h2>
       {loading && <Loading />}
       {error && <Error error="Something went wrong" />}
@@ -35,25 +36,25 @@ export default function Itemslist() {
           </tr>
         </thead>
         <tbody>
-          {items &&
-            items.map((item) => {
+          {canteenitems &&
+            canteenitems.map((canteenitem) => {
               return (
-                <tr key={item._id}>
-                  <td>{item.name}</td>
+                <tr key={canteenitem._id}>
+                  <td>{canteenitem.name}</td>
                   <td>
-                    {item.price} <br />
+                    {canteenitem.price} <br />
                   </td>
-                  <td>{item.qty}</td>
-                  <td>{item.category}</td>
-                  <td>{item.description}</td>
+                  <td>{canteenitem.qty}</td>
+                  <td>{canteenitem.category}</td>
+                  <td>{canteenitem.description}</td>
                   <td>
                     <i
                       className="fa fa-trash m-1"
                       onClick={() => {
-                        dispatch(deleteItem(item._id));
+                        dispatch(deletecanteenItem(canteenitem._id));
                       }}
                     ></i>
-                    <Link to={`/admin/edititem/${item._id}`}>
+                    <Link to={`/canteenadmin/editcanteenitem/${canteenitem._id}`}>
                       <i className="fa fa-edit m-1"></i>
                     </Link>
                   </td>

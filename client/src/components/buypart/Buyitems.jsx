@@ -5,7 +5,6 @@ import Error from "./Error";
 import Loading from "./Loading";
 import Item from "./item";
 import Checkout from "./Checkout"
-import { deleteFromCart } from "../../actions/cartActions";
 
 
 const Buyitems = (props) => {

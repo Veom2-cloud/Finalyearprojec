@@ -8,7 +8,7 @@ import {
   Button,
   InputAdornment,
 } from "@mui/material";
-import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
@@ -72,7 +72,7 @@ const Navbar = () => {
   const searchBoxStyle = {
     borderRadius: 20,
     flexGrow: 1,
-    maxWidth: 300
+    maxWidth: 300,
   };
   return (
     <Stack mb={2}>
@@ -132,22 +132,28 @@ const Navbar = () => {
                 <AiFillMessage />
               </IconButton>
               {user.userId == "63b02c400483b301cf061906" ? (
-                   <IconButton component={Link} to={"/admin"}>
-                   <AdminPanelSettingsIcon />
-                 </IconButton>
-                  ) : (
-                    ""
-                  )}
-                  {user.userId == "63b024b920f227754490c428" ? (
-                   <IconButton component={Link} to={"/superadmin"}>
-                   <AdminPanelSettingsIcon />
-                 </IconButton>
-                  ) : (
-                    ""
-                  )}
+                <IconButton component={Link} to={"/admin"}>
+                  <AdminPanelSettingsIcon />
+                </IconButton>
+              ) : (
+                ""
+              )}
+              {user.userId == "63b024b920f227754490c428" ? (
+                <IconButton component={Link} to={"/superadmin"}>
+                  <AdminPanelSettingsIcon />
+                </IconButton>
+              ) : (
+                ""
+              )}
 
-              
-            
+              {user.userId == "63f4ba9c37aab2240592b8e0" ? (
+                <IconButton component={Link} to={"/canteenadmin"}>
+                  <AdminPanelSettingsIcon />
+                </IconButton>
+              ) : (
+                ""
+              )}
+
               <IconButton component={Link} to={"/users/" + username}>
                 <UserAvatar width={30} height={30} username={user.username} />
               </IconButton>

@@ -9,6 +9,8 @@ import Otp from "./otp";
 import Otp1 from "./otp1";
 import Filescreen from "./filescreen";
 import Ordersscreen from "./Ordersscreen";
+import Canteenitem from "./canteen/Canteenitem"
+import Canteenorderlist from "./canteen/Canteenorderlist"
 
 const config = {
   botName: "Bot",
@@ -36,14 +38,7 @@ const config = {
       widgetName: "Buyitems",
       widgetFunc: (props) => <Buyitems {...props} />,
     },
-    {
-      widgetName: "otp",
-      widgetFunc: (props) => <Otp {...props} />,
-    },
-    {
-      widgetName: "otp1",
-      widgetFunc: (props) => <Otp1 {...props} />,
-    },
+    
       {
         widgetName: "UploadFile",
         widgetFunc: (props) => <UploadFile {...props} />,
@@ -55,6 +50,14 @@ const config = {
       {
         widgetName: "Ordersscreen",
         widgetFunc: (props) => <Ordersscreen {...props} />,
+      },
+      {
+        widgetName: "CanteenOrderscreen",
+        widgetFunc: (props) => <Canteenitem {...props} />,
+      },
+      {
+        widgetName: "CanteenOrderscreenList",
+        widgetFunc: (props) => <Canteenorderlist {...props} />,
       },
   ],
 }

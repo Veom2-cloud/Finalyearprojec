@@ -14,6 +14,7 @@ var cors = require('cors')
 const itemRoute = require('./routes/itemRoute')
 const ordersRoute = require('./routes/ordersRoute')
 const otpRoute = require('./routes/otprouter')
+const Canteenorder = require("./routes/canteenorderroute")
 var cors = require('cors')
 const fileRoute = require('./routes/file');
 const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST);
@@ -21,8 +22,7 @@ const paymentroute = require("./routes/paymentroute")
 var  fs = require("fs")
 var rimraf = require("rimraf")
 var uploaddir = __dirname + '/files'
-
-
+const canteenroute = require("./routes/canteenitemroutes")
 
 dotenv.config();
 
@@ -58,6 +58,8 @@ app.use('/api/items/', itemRoute)
 app.use('/api/orders/' , ordersRoute)
 app.use('/api/otp/' , otpRoute)
 app.use("/api/", paymentroute)
+app.use("/api/canteen/order/", Canteenorder)
+app.use('/api/canteenitems/',canteenroute)
 app.use(fileRoute);
 
 fs.readdir(uploaddir , function(Err,files) {

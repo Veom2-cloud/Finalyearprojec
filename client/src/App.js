@@ -39,10 +39,15 @@ import Superadminscreen from "./screens/Superadmin";
 import Useredit from "./screens/Useredit";
 import SuperadminRoute from "./components/Superadminroute";
 import { initiateSocketConnection, socket } from "./helpers/socketHelper";
+import CanteenAdminroute from "./components/Routes/CanteenAdminroute";
 
 import { useEffect } from "react";
 import { BASE_URL } from "./config";
 import { io } from "socket.io-client";
+import Canteenitemlist from "./screens/canteen/Canteenitemlist";
+import CanteenAdditem from "./screens/canteen/CanteenAdditem";
+import Editcanteenitem from "./screens/canteen/CanteenEdititem";
+import CanteenAllorders from "./screens/canteen/CanteenAllorders";
 
 function App() {
   initiateSocketConnection();
@@ -74,6 +79,47 @@ function App() {
                 </PrivateRoute>
               }
             />
+           <Route
+              path="/canteenadmin"
+              element={
+                <PrivateRoute>
+                  <CanteenAdminroute>
+                    <Canteenitemlist/>
+                    </CanteenAdminroute>
+                </PrivateRoute>
+              }
+            />
+             <Route
+              path="/canteenadmin/canteenallorders"
+              element={
+                <PrivateRoute>
+                  <CanteenAdminroute>
+                    <CanteenAllorders/>
+                    </CanteenAdminroute>
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/canteenadmin/addcanteenitem"
+              element={
+                <PrivateRoute>
+                  <CanteenAdminroute>
+                    <CanteenAdditem/>
+                    </CanteenAdminroute>
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/canteenadmin/editcanteenitem/:canteenitemid"
+              element={
+                <PrivateRoute>
+                   <CanteenAdminroute>
+                    <Editcanteenitem/>
+                    </CanteenAdminroute>
+                </PrivateRoute>
+              }
+            />
+
             <Route
               path="/admin/orderslist"
               element={
@@ -163,7 +209,7 @@ function App() {
               path="/buy"
               element={
                 <PrivateRoute>
-                  <Homescreen />{" "}
+                  <Homescreen />
                 </PrivateRoute>
               }
             />

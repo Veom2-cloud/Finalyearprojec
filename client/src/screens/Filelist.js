@@ -4,6 +4,7 @@ import axios from "axios";
 import { API_URL } from "../components/util/constants";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar1 from "./Navbar1"
+import { deliverFile } from "../actions/fileaction";
 import "./css/Navmenu.css"
 
 const FilesList = () => {
@@ -65,8 +66,8 @@ var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds(
         <thead className="text-white bg-dark">
           <tr>
             <th>Name</th>
-            <th>Pages to print</th>
-            <th>copies</th>
+            <th>Pages to print </th> 
+            <th> Copies </th>
             <th>Instruction</th>
             <th>Price</th>
             <th>Date</th>
@@ -74,8 +75,8 @@ var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds(
             <th>Time for delivery</th>
             <th>Download File</th>
             <th>Otp</th>
-            <th>Status</th>
             <th>Paid</th>
+            <th>Deliver</th>
           </tr>
         </thead>
         <tbody>
@@ -89,9 +90,8 @@ var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds(
               <tr key={file._id}>
                 <td className="file-title">{file.username}</td>
                 <td className="file-description">{file.pages}</td>
-                <td>{file.copies}</td>
+                <td> {file.copies}</td>
                 <td>{file.instruction}</td>
-
                 <td>{file.pages * file.copies * 1.5}</td>
                 <td>{file.date}</td>
                 <td>{file.time}</td>
@@ -107,16 +107,16 @@ var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds(
                   </a>
                 </td>
                 <td>{file.otp}</td>
-                <td>
-                  {file.isDelivered == true ? (
-                    "Done"
-                  ) : (
-                    "Not done"
-                  )}
-                </td>
+                
 
-                <td>{file.ispaid == false  ? "Not Paid" : "Paid"  }</td>
-              
+                <td>{file.ispaid == false  ? "NO" : "YES"  }</td>
+               <td> <i
+                      className="fa fa-check m-1"
+                      onClick={() => {
+                        dispatch(deliverFile(file._id));
+                      }}
+                    ></i>
+                    </td>
               </tr>
             )))
           ) : (

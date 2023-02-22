@@ -6,10 +6,11 @@ const CvOptions = (props) => {
   const options = [
     { text: "Upload", handler: props.actionProvider.handleEducationList, id: 1 },
     { text: "Buy items", handler: props.actionProvider.handleLinksList, id: 2 },
-    { text: "OTP", handler: props.actionProvider.handleotp, id: 3 },
-    { text: "OTP For file", handler: props.actionProvider.handleotp1, id: 4 },
-    { text: "file", handler: props.actionProvider.handlefile1, id: 5 },
-    { text: "Orders List", handler: props.actionProvider.handleorderList, id: 6 },
+    { text: "file", handler: props.actionProvider.handlefile1, id: 3 },
+    { text: "Orders List", handler: props.actionProvider.handleorderList, id: 4 },
+    { text: "Canteen Item Order", handler: props.actionProvider.handlecanteenorder, id: 5 },
+    { text: "Canteen Order List", handler: props.actionProvider.handlecanteenorderlist, id: 6 },
+
 
   ];
 

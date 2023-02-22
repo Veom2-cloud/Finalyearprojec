@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 030ade578562f4f55b5c95c2286bf98e74ae78fd
 ## Installation and usage
 1) Clone this repository  
 ```
@@ -31,3 +35,7 @@ cd social-media-app
 cd client
 npm start
 ```
+<<<<<<< HEAD
+=======
+
+>>>>>>> 030ade578562f4f55b5c95c2286bf98e74ae78fd

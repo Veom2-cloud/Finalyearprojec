@@ -13,6 +13,7 @@ const FindUsers = () => {
 
   const [loading, setLoading] = useState(true);
   const [users, setUsers] = useState(null);
+  
 
   const fetchUsers = async () => {
     setLoading(true);
@@ -28,7 +29,7 @@ const FindUsers = () => {
   const handledelete = async (id)=>{
     deletes(id) 
     alert("deleted")
-    window.location.href="/admin"
+    window.location.href="/superadmin"
   }
 
 

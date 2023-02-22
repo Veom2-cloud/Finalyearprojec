@@ -22,22 +22,6 @@ class ActionProvider {
     this.updateChatbotState(message);
   };
 
-  handleotp = () => {
-    const message = this.createChatBotMessage("otp", {
-      widget: "otp",
-    });
-
-    this.updateChatbotState(message);
-  };
-
-  handleotp1 = () => {
-    const message = this.createChatBotMessage("otp1", {
-      widget: "otp1",
-    });
-
-    this.updateChatbotState(message);
-  };
-
   handlefile1 = () => {
     const message = this.createChatBotMessage("Filescreen", {
       widget: "Filescreen",
@@ -57,6 +41,22 @@ class ActionProvider {
   handleorderList = () => {
     const message = this.createChatBotMessage("Order", {
       widget: "Ordersscreen",
+    });
+
+    this.updateChatbotState(message);
+  };
+
+  handlecanteenorder = () => {
+    const message = this.createChatBotMessage("CanteenOrder", {
+      widget: "CanteenOrderscreen",
+    });
+
+    this.updateChatbotState(message);
+  };
+
+  handlecanteenorderlist = () => {
+    const message = this.createChatBotMessage("CanteenOrderList", {
+      widget: "CanteenOrderscreenList",
     });
 
     this.updateChatbotState(message);

@@ -58,9 +58,7 @@ const PostBrowser = (props) => {
       );
     }
 
-    if (data.data.length < 10) {
-      setEnd(true);
-    }
+   
 
     setLoading(false);
     if (!data.error) {

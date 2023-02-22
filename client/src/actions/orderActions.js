@@ -33,9 +33,9 @@ export const getUserOrders=()=>async (dispatch,getState)=>{
   dispatch({type:'GET_USER_ORDERS_REQUEST'})
   
   try {
-      const response = await axios.post('/api/orders/getuserorders' , {userid : currentUser._id})
+      const response = await axios.post('/api/orders/getuserorders' , {username : currentUser.username})
 
-      
+      console.log(response)
       
       dispatch({type:'GET_USER_ORDERS_SUCCESS' , payload : response.data})
   } catch (error) {
@@ -76,6 +76,25 @@ export const deliverOrder=(orderid)=>async dispatch=>{
       console.log(error);
     }
 
+
+}
+
+export const filterorder=(searchkey)=>async dispatch=>{
+
+  console.log(searchkey)
+  dispatch({type:'GET_FILTERORDERS_REQUEST'})
+
+  try {
+      var filteredorders ;
+      const response = await axios.get('/api/orders/getallorders')
+      console.log(response)
+      filteredorders = response.data.filter(order=>order.otp.includes(searchkey))
+       console.log(filteredorders)
+      
+      dispatch({type:'GET_FILTERORDERS_SUCCESS' , payload : filteredorders})
+  } catch (error) {
+      dispatch({type:'GET_FILTERORDERS_FAILED' , payload : error})
+  }
 
 }
 

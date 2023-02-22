@@ -135,8 +135,6 @@ export const follows = async (userId, followingId) => {
 }
 
 const finduserbyid = async (userId) => {
-  
-  
   try {
     const res = await fetch(BASE_URL + "api/users/getuserbyid/" + userId, {
       method: "POST",
@@ -178,6 +176,7 @@ const getAllfollowers = async (userId) => {
     console.log(err);
   }
 };
+
 const getfollowing = async (query) => {
   try {
     const res = await fetch(

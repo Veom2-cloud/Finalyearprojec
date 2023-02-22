@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require("uuid");
 const stripe = require("stripe")(
   "sk_test_51JXN8ASGX65UtClKPbtOS5wOvP7HKw9eLxeJjQlotGkat3vyjR8YeFiVfIVCWXSDdBLqU0kyXPL1S7iHaksNo0JF00pnx6HRq9"
 );
-const Order = require("../models/orderModel");
+const CanteenOrder = require("../models/Canteenordermodel");
 
 
 function generateOTP() {
@@ -16,12 +16,13 @@ function generateOTP() {
   for (let i = 0; i < 4; i++ ) {
       OTP += digits[Math.floor(Math.random() * 10)];
   }
+//    Math.floor(Math.random() * 10000)
   return OTP;
 }
 
 
-router.post("/placeorder", async (req, res) => {
-  const { token, subtotal, currentUser, cartItems,date,time,updatedTime } = req.body;
+router.post("/placecanteenorder", async (req, res) => {
+  const { token, subtotal, currentUser, cartcanteenItems,date,time,updatedTime } = req.body;
  
 
 
@@ -44,12 +45,12 @@ router.post("/placeorder", async (req, res) => {
     );
 
     if (payment) {
-      const neworder = new Order({
+      const newcanteenorder = new CanteenOrder({
         name: currentUser.username,
         email: currentUser.email,
         userid: currentUser._id,
-        orderItems: cartItems,
-        orderAmount: subtotal,
+        ordercanteenItems: cartcanteenItems,
+        ordercanteenAmount: subtotal,
         isPaid: true,
         transactionId: payment.source.id,
         date: date,
@@ -59,9 +60,9 @@ router.post("/placeorder", async (req, res) => {
       
       });
 
-      neworder.save();
+      newcanteenorder.save();
 
-      res.send("Order placed successfully");
+      res.send("Canteen Order placed successfully");
     } else {
       res.send("Payment failed");
     }
@@ -70,20 +71,20 @@ router.post("/placeorder", async (req, res) => {
   }
 });
 
-router.post("/getuserorders", async (req, res) => {
+router.post("/getcanteenuserorders", async (req, res) => {
   const { username } = req.body;
   try {
-    const orders = await Order.find({ name: username }).sort({ _id: -1 });
+    const orders = await CanteenOrder.find({ name: username }).sort({ _id: -1 });
     res.send(orders);
   } catch (error) {
     return res.status(400).json({ message: "Something went wrong" });
   }
 });
 
-router.get("/getallorders", async (req, res) => {
+router.get("/getallcanteenorders", async (req, res) => {
   try {
-    const orders = await Order.find({});
-    const sortedByCreationDates = orders.sort(
+    const canteenorders = await CanteenOrder.find({});
+    const sortedByCreationDates = canteenorders.sort(
       (a, b) => b.createdAt - a.createdAt
     );
     res.send(sortedByCreationDates);
@@ -92,24 +93,24 @@ router.get("/getallorders", async (req, res) => {
   }
 });
 
-router.post("/deliverorder", async (req, res) => {
-  const orderid = req.body.orderid;
+router.post("/delivercanteenorder", async (req, res) => {
+  const canteenorderid = req.body.canteenorderid;
   try {
-    const order = await Order.findOne({ _id: orderid });
-    order.isDelivered = true;
-    await order.save();
-    res.send("Order Delivered Successfully");
+    const canteenorder = await CanteenOrder.findOne({ _id: canteenorderid });
+    canteenorder.isDelivered = true;
+    await canteenorder.save();
+    res.send("Canteen Order Delivered Successfully");
   } catch (error) {
     return res.status(400).json({ message: error });
   }
 });
 
-router.post("/deleteorder", async (req, res) => {
-  const orderid = req.body.orderid;
+router.post("/deletecanteenorder", async (req, res) => {
+  const canteenorderid = req.body.canteenorderid;
 
   try {
-    await Order.findOneAndDelete({ _id: orderid });
-    res.send("order Deleted successfully");
+    await CanteenOrder.findOneAndDelete({ _id: canteenorderid });
+    res.send("Canteen order Deleted successfully");
   } catch (error) {
     return res.status(400).json({ message: error });
   }

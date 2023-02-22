@@ -321,8 +321,8 @@ const getAllUsers = async (req, res) => {
 
 const getuserbyid = async (req, res) => {
   try {
-    const userid = req.body.userid
-    const user = await User.findOne({userid})
+    const userId = req.body.userId
+    const user = await User.findOne({userId})
     return res.send(user);
   } catch (err) {
     console.log(err);

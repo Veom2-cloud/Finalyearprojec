@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { editItem, getItemById } from "../actions/itemActions";
-import Error from "../components/buypart/Error";
-import Loading from "../components/buypart/Loading";
+import { editcanteenItem , getCanteenItemById} from "../../actions/Canteenitemactions";
+import Error from "../../components/buypart/Error";
+import Loading from "../../components/buypart/Loading";
 import {useParams} from "react-router-dom"
-import Success from "../components/buypart/Success";
-import Navbar1 from "./Navbar1"
-import "./css/Navmenu.css"
+import Success from "../../components/buypart/Success";
+import Navbar3 from "./Navbar3"
+import "../css/Navmenu.css"
 
-export default function Edititem({ match }) {
-  const { itemid } = useParams();
-  console.log(itemid)
+export default function Editcanteenitem({ match }) {
+  const { canteenitemid } = useParams();
+  console.log(canteenitemid)
 
   const dispatch = useDispatch();
   const [name, setname] = useState("");
@@ -20,36 +20,35 @@ export default function Edititem({ match }) {
   const [description, setdescription] = useState("");
   const [category, setcategory] = useState("");
 
-  const getitembyidstate = useSelector((state) => state.getItemByIdReducer);
+  const getcanteenitembyidstate = useSelector((state) => state.getCanteenItemByIdReducer);
 
-  const {item, error, loading } = getitembyidstate;
-console.log(item)
+  const {canteenitem, error, loading } = getcanteenitembyidstate;
 
-  const edititemstate = useSelector((state) => state.editItemReducer);
+  const edititemstate = useSelector((state) => state.editCanteenItemReducer);
   const { editloading, editerror, editsuccess } = edititemstate;
 
   useEffect(() => {
-    if (item) {
-      if (item._id == itemid) {
-        setname(item.name);
-        setdescription(item.description);
-        setcategory(item.category);
-        setprice(item.price);
-      setqty(item.qty)
-        setimage(item.image);
+    if (canteenitem) {
+      if (canteenitem._id == canteenitemid) {
+        setname(canteenitem.name);
+        setdescription(canteenitem.description);
+        setcategory(canteenitem.category);
+        setprice(canteenitem.price);
+      setqty(canteenitem.qty)
+        setimage(canteenitem.image);
       } else {
-        dispatch(getItemById(itemid));
+        dispatch(getCanteenItemById(canteenitemid));
       }
     } else {
-      dispatch(getItemById(itemid));
+      dispatch(getCanteenItemById(canteenitemid));
     }
-  }, [item, dispatch]);
+  }, [canteenitem, dispatch]);
 
   function formHandler(e) {
     e.preventDefault();
 
-    const editeditem = {
-      _id: itemid,
+    const editedcanteenitem = {
+      _id: canteenitemid,
       name,
       image,
       description,
@@ -58,15 +57,15 @@ console.log(item)
       qty
     };
 
-    dispatch(editItem(editeditem));
+    dispatch(editcanteenItem(editedcanteenitem));
   }
 
   return (
     <div className="adminPage">
-              <Navbar1/>
+              <Navbar3/>
 
       <div className="text-center shadow-lg p-3 mb-5 bg-white rounded" id = "edititem">
-        <h1>Edit Item</h1>
+        <h1>Edit Canteen Item</h1>
         {loading && <Loading />}
         {error && <Error error="Something went wrong" />}
         {editsuccess && <Success success="Item details edited successfully" />}
