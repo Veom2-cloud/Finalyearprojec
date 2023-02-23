@@ -13,14 +13,16 @@ export default function Orderslist() {
   const getordersstate = useSelector((state) => state.getAllOrdersReducer);
   const { loading, error, orders } = getordersstate;
  
+  const[searchkey , setsearchkey] = useState('')
+
 
   useEffect(() => {
     dispatch(getAllOrders());
   }, []);
 
-  window.setTimeout( function() {
-    window.location.reload();
-  }, 30000);
+  // window.setTimeout( function() {
+  //   window.location.reload();
+  // }, 30000);
 
   return (
     <div className="adminPage">
@@ -28,6 +30,10 @@ export default function Orderslist() {
     
       {loading && <Loading />}
       <h2 className="text-center">Orders List</h2>
+      <Filterorder
+        searchkey ={searchkey}
+        setsearchkey = {setsearchkey}
+      />
       {error && <Error error="Something went wrong" />}
       <table className="table table-striped table-bordered table-responsive-sm">
         <thead className="text-white bg-dark">
@@ -41,14 +47,17 @@ export default function Orderslist() {
             <th>Time for delivery</th>
             <th>otp</th>
             <th>Paid</th>
-            <th>Deliver</th>
+            <th>Mark Delivered</th>
           </tr>
         </thead>
 
         <tbody>
        
           {orders && orders.filter( function(order){
-            return order.isDelivered == false
+            if(searchkey == ""){
+              return order.isDelivered == false  
+            }
+            return order.isDelivered == false && order.name == searchkey
           }).map((order) => {
              
               return (

@@ -6,6 +6,10 @@ import Loading from "../components/buypart/Loading";
 import Success from "../components/buypart/Success";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import downloadjs from 'downloadjs';
+import html2canvas from 'html2canvas';
+import DownloadIcon from '@mui/icons-material/Download';
+
 export default function Ordersscreen() {
   AOS.init();
   const dispatch = useDispatch();
@@ -15,6 +19,13 @@ export default function Ordersscreen() {
   useEffect(() => {
     dispatch(getUserOrders());
   }, []);
+
+  const handleCaptureClick = async (id) => {
+    const canvas = await html2canvas(document.getElementById(id));
+    const dataURL = canvas.toDataURL('image/png');
+    downloadjs(dataURL, 'download.png', 'image/png');
+  };
+
 
   return (
     <div>
@@ -32,10 +43,13 @@ export default function Ordersscreen() {
                 className="m-1 p-3"
                 style={{ backgroundColor: "#f2aa4cff", color: "#101820ff" }}
                 key={order._id}
+                id = {order._id}
               >
+                <div>
                 <div className="flex-container">
                   <div className="text-left">
                     <h2 style={{ fontSize: "20px" }}>Items</h2>
+                    
                     <hr />
                     {order.orderItems.map((item) => {
                       return (
@@ -65,6 +79,19 @@ export default function Ordersscreen() {
                     <p>OTP: {order.otp}</p>
                   </div>
                 </div>
+                    {/* {console.log(typeof order)} */}
+                {/* <i
+                      className="fa fa-check m-1"
+                      onClick={() => {
+                        handleCaptureClick(this);
+                      }}
+                    ></i> */}
+              </div>
+              <DownloadIcon
+                      onClick={() => {
+                        handleCaptureClick(order._id);
+                      }}
+              />
               </div>
             );
           }):  (

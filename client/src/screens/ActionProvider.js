@@ -15,15 +15,32 @@ class ActionProvider {
   }
 
   handleLinksList = () => {
-    const message = this.createChatBotMessage("Buy items", {
+    const message = this.createChatBotMessage("Stationary Products", {
       widget: "Buyitems",
     });
 
     this.updateChatbotState(message);
   };
 
+  handleOptionFile = () => {
+    const message = this.createChatBotMessage("Reached Stationary" ,{
+      widget: "Optionfile",
+    });
+
+    this.updateChatbotState(message);
+  };
+
+  
+  handleOptionCanteen = () => {
+    const message = this.createChatBotMessage("Reached Canteen", {
+      widget: "OptionCanteen",
+    });
+
+    this.updateChatbotState(message);
+  };
+
   handlefile1 = () => {
-    const message = this.createChatBotMessage("Filescreen", {
+    const message = this.createChatBotMessage("Printout orders", {
       widget: "Filescreen",
     });
 
@@ -31,7 +48,7 @@ class ActionProvider {
   };
 
   handleEducationList = () => {
-    const message = this.createChatBotMessage("Upload", {
+    const message = this.createChatBotMessage("Upload docs", {
       widget: "UploadFile",
     });
 
@@ -39,7 +56,7 @@ class ActionProvider {
   };
 
   handleorderList = () => {
-    const message = this.createChatBotMessage("Order", {
+    const message = this.createChatBotMessage("Stationary orders", {
       widget: "Ordersscreen",
     });
 
@@ -47,7 +64,7 @@ class ActionProvider {
   };
 
   handlecanteenorder = () => {
-    const message = this.createChatBotMessage("CanteenOrder", {
+    const message = this.createChatBotMessage("Select items", {
       widget: "CanteenOrderscreen",
     });
 
@@ -55,7 +72,7 @@ class ActionProvider {
   };
 
   handlecanteenorderlist = () => {
-    const message = this.createChatBotMessage("CanteenOrderList", {
+    const message = this.createChatBotMessage("Food orders", {
       widget: "CanteenOrderscreenList",
     });
 

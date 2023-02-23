@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import Navbar1 from "./Navbar1"
 import { deliverFile } from "../actions/fileaction";
 import "./css/Navmenu.css"
+import Filterorder from "../components/buypart/Filterorder";
+
 
 const FilesList = () => {
   const [filesList, setFilesList] = useState([]);
@@ -13,7 +15,8 @@ const FilesList = () => {
   const dispatch = useDispatch();
   var today = new Date();
   console.log(filesList)
-  
+  const[searchkey , setsearchkey] = useState('')
+
 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
@@ -60,7 +63,10 @@ var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds(
     <div className="adminPage">
       <Navbar1/>
       <h2 className="text-center">Files List</h2>
-
+      <Filterorder
+        searchkey ={searchkey}
+        setsearchkey = {setsearchkey}
+      />
       {errorMsg && <p className="errorMsg">{errorMsg}</p>}
       <table className="table table-striped table-bordered table-responsive-sm">
         <thead className="text-white bg-dark">
@@ -76,7 +82,7 @@ var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds(
             <th>Download File</th>
             <th>Otp</th>
             <th>Paid</th>
-            <th>Deliver</th>
+            <th>Mark Delivered</th>
           </tr>
         </thead>
         <tbody>
@@ -84,7 +90,10 @@ var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds(
             ( filesList.filter(
               function (file) 
             {
-              return file.isDelivered == false
+              if(searchkey == ""){  
+                return file.isDelivered == false
+              }
+              return file.isDelivered == false && file.username == searchkey
             }).map
             ((file) => ( 
               <tr key={file._id}>

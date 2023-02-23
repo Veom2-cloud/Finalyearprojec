@@ -39,6 +39,8 @@ export default function Checkout({ subtotal }) {
     <div className="text-center">
       {loading && <Loading />}
       {error && <Error error="Something went wrong" />}
+      {success && <Success success="Done" />}
+
 
       <StripeCheckout
         amount={subtotal * 100}

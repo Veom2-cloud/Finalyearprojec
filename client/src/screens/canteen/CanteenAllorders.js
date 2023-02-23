@@ -5,13 +5,15 @@ import Error from "../../components/buypart/Error";
 import Loading from "../../components/buypart/Loading";
 import Navbar3 from "./Navbar3"
 import "../css/Navmenu.css"
+import Filterorder from "../../components/buypart/Filterorder";
 
 
 export default function Orderslist() {
   const dispatch = useDispatch();
   const getordersstate = useSelector((state) => state.getAllCanteenOrdersReducer);
   const { loading, error, canteenorders } = getordersstate;
- 
+  const[searchkey , setsearchkey] = useState('')
+
 
   useEffect(() => {
     dispatch(getAllCanteenOrders());
@@ -27,6 +29,10 @@ export default function Orderslist() {
     
       {loading && <Loading />}
       <h2 className="text-center">Orders List</h2>
+      <Filterorder
+        searchkey ={searchkey}
+        setsearchkey = {setsearchkey}
+      />
       {error && <Error error="Something went wrong" />}
       <table className="table table-striped table-bordered table-responsive-sm">
         <thead className="text-white bg-dark">
@@ -40,14 +46,18 @@ export default function Orderslist() {
             <th>Time for delivery</th>
             <th>otp</th>
             <th>Paid</th>
-            <th>Deliver</th>
+            <th>Mark Delivered</th>
           </tr>
         </thead>
 
         <tbody>
        
           {canteenorders && canteenorders.filter( function(canteenorder){
-            return canteenorder.isDelivered == false
+            if (searchkey == "") {
+              return canteenorder.isDelivered == false
+            }
+            return canteenorder.isDelivered == false && canteenorder.name == searchkey
+
           }).map((canteenorder) => {
              
               return (

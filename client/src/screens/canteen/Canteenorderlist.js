@@ -5,6 +5,9 @@ import Error from "../../components/buypart/Error";
 import Loading from "../../components/buypart/Loading";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import downloadjs from 'downloadjs';
+import html2canvas from 'html2canvas';
+import DownloadIcon from '@mui/icons-material/Download';
 
 export default function CanteenOrderscreenList() {
   AOS.init();
@@ -15,6 +18,14 @@ export default function CanteenOrderscreenList() {
   useEffect(() => {
     dispatch(getCanteenUserOrders());
   }, []);
+
+  const handleCaptureClick = async (id) => {
+    const canvas = await html2canvas(document.getElementById(id));
+    const dataURL = canvas.toDataURL('image/png');
+    downloadjs(dataURL, 'download.png', 'image/png');
+  };
+
+
 
   return (
     <div>
@@ -32,6 +43,8 @@ export default function CanteenOrderscreenList() {
                 className="m-1 p-3"
                 style={{ backgroundColor: "#f2aa4cff", color: "#101820ff" }}
                 key={canteenorder._id}
+                id = {canteenorder._id}
+
               >
                 <div className="flex-container">
                   <div className="text-left">
@@ -65,6 +78,11 @@ export default function CanteenOrderscreenList() {
                     <p>Otp: {canteenorder.otp}</p>
                   </div>
                 </div>
+                <DownloadIcon
+                      onClick={() => {
+                        handleCaptureClick(canteenorder._id);
+                      }}
+              />
               </div>
             );
           }):  (

@@ -1,4 +1,4 @@
-let greetings = ["hello", "hi", "good morning", "good evening", "good afternoon", "morning", "hey", "yo", "salutations", "options", "help", "back", "what can you do"]
+let greetings = ["home","hello", "hi", "good morning", "good evening", "good afternoon", "morning", "hey", "yo", "options", "help"]
 
 // MessageParser starter code
 class MessageParser {
@@ -32,6 +32,12 @@ class MessageParser {
         }
         if (lowerCaseMessage.includes("order") || lowerCaseMessage.includes("orders")){
             this.actionProvider.handleorderList();
+        }
+        if (lowerCaseMessage.includes("stationary")){
+            this.actionProvider.handleOptionFile();
+        }
+        if (lowerCaseMessage.includes("canteen")){
+            this.actionProvider.handleOptionCanteen();
         }
        
         

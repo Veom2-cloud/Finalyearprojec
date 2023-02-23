@@ -5,16 +5,16 @@ import CvOptions from "../components/buypart/CvOptions/CvOptions";
 import KMBotAvatar from "../components/buypart/KMBotAvatar/KMBotAvatar";
 import Buyitems from "../components/buypart/Buyitems";
 import UploadFile from "./UploadFile";
-import Otp from "./otp";
-import Otp1 from "./otp1";
 import Filescreen from "./filescreen";
 import Ordersscreen from "./Ordersscreen";
 import Canteenitem from "./canteen/Canteenitem"
 import Canteenorderlist from "./canteen/Canteenorderlist"
+import OptionsStationary from "../components/buypart/CvOptions/OptionsStationary";
+import OptionCanteen from "../components/buypart/CvOptions/OptionCanteen";
 
 const config = {
   botName: "Bot",
-  initialMessages: [createChatBotMessage(`Hi, I am Bot. What do you want to do?`, {
+  initialMessages: [createChatBotMessage(`Hi, What do you want to access`, {
       widget: "CvOptions",
     }),  
 ],
@@ -35,10 +35,18 @@ const config = {
       widgetFunc: (props) => <CvOptions {...props} />,
     },
     {
+      widgetName: "Optionfile",
+      widgetFunc: (props) => <OptionsStationary {...props} />,
+    },
+    {
       widgetName: "Buyitems",
       widgetFunc: (props) => <Buyitems {...props} />,
     },
     
+    {
+      widgetName: "OptionCanteen",
+      widgetFunc: (props) => <OptionCanteen {...props} />,
+    },
       {
         widgetName: "UploadFile",
         widgetFunc: (props) => <UploadFile {...props} />,

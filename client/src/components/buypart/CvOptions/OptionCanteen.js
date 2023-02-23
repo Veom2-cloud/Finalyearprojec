@@ -2,11 +2,10 @@ import React from "react";
 
 import "./CvOptions.css";
 
-const CvOptions = (props) => {
+const OptionCanteen = (props) => {
   const options = [
-    { text: "Stationary", handler: props.actionProvider.handleOptionFile, id: 1 },
-    { text: "Canteen", handler: props.actionProvider.handleOptionCanteen, id: 2 },
-    
+    { text: "Order food", handler: props.actionProvider.handlecanteenorder, id: 1 },
+    { text: "Food order list", handler: props.actionProvider.handlecanteenorderlist, id: 2 },
 
 
   ];
@@ -24,4 +23,4 @@ const CvOptions = (props) => {
   return <div className="cv-options-container">{optionsMarkup}</div>;
 };
 
-export default CvOptions;
+export default OptionCanteen;

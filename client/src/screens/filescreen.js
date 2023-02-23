@@ -5,6 +5,9 @@ import { API_URL } from "../components/util/constants";
 import { useDispatch, useSelector } from "react-redux";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import html2canvas from 'html2canvas';
+import downloadjs from 'downloadjs';
+import DownloadIcon from '@mui/icons-material/Download';
 
 export default function Filescreen() {
   AOS.init();
@@ -32,6 +35,12 @@ export default function Filescreen() {
   }, []);
 
   //
+  const handleCaptureClick = async (id) => {
+    const canvas = await html2canvas(document.getElementById(id));
+    const dataURL = canvas.toDataURL('image/png');
+    downloadjs(dataURL, 'download.png', 'image/png');
+  };
+
   return (
     <div>
       <h2 style={{ fontSize: "20px", textAlign:"center" }}>Files</h2>
@@ -47,6 +56,8 @@ export default function Filescreen() {
               className="p-2 m-2"
               style={{ backgroundColor: "#f2aa4cff", color: "#101820ff" }}
               key={file._id}
+              id = {file._id}
+
             >
               <div className="flex-container">
                 <div className="text-left w-100">
@@ -62,8 +73,14 @@ export default function Filescreen() {
                     Delivered:
                     {file.isDelivered == true ? " Recieved" : " Not Recieved"}
                   </p>
+                  <p>Otp: {file.otp}</p>
                 </div>
               </div>
+              <DownloadIcon
+                      onClick={() => {
+                        handleCaptureClick(file._id);
+                      }}
+              />
             </div>
           );
         })}

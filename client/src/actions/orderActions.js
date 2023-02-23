@@ -88,7 +88,7 @@ export const filterorder=(searchkey)=>async dispatch=>{
       var filteredorders ;
       const response = await axios.get('/api/orders/getallorders')
       console.log(response)
-      filteredorders = response.data.filter(order=>order.otp.includes(searchkey))
+      filteredorders = response.data.filter(order=>order.name.includes(searchkey))
        console.log(filteredorders)
       
       dispatch({type:'GET_FILTERORDERS_SUCCESS' , payload : filteredorders})
