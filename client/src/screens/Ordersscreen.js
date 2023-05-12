@@ -41,7 +41,9 @@ export default function Ordersscreen() {
             return (
               <div
                 className="m-1 p-3"
-                style={{ backgroundColor: "#f2aa4cff", color: "#101820ff" }}
+                style={{ backgroundColor: "#f2aa4cff", color: "#101820ff",  overflow: "hidden",
+                borderRadius: "5px" ,
+                fontSize: "small" }}
                 key={order._id}
                 id = {order._id}
               >

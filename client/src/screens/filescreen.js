@@ -23,7 +23,7 @@ export default function Filescreen() {
     const getFilesList = async () => {
       try {
         const { data } = await axios.post(`${API_URL}/getuserfile`, {
-          userid: user.userId,
+          username: user.username,
         });
         setErrorMsg("");
         setFilesList(data);
@@ -46,7 +46,8 @@ export default function Filescreen() {
       <h2 style={{ fontSize: "20px", textAlign:"center" }}>Files</h2>
       <hr />
       <div className="row justify-content-center m-1">
-        { filesList.filter(
+        {filesList && filesList.length > 0 ?
+         filesList.filter(
               function (file) 
             {
               return file.isDelivered == false
@@ -54,7 +55,13 @@ export default function Filescreen() {
           return (
             <div
               className="p-2 m-2"
-              style={{ backgroundColor: "#f2aa4cff", color: "#101820ff" }}
+              style={{
+                backgroundColor: "#f2aa4cff",
+                color: "#101820ff",
+                overflow: "hidden",
+                borderRadius: "5px" ,
+                fontSize: "small"
+              }}
               key={file._id}
               id = {file._id}
 
@@ -83,7 +90,9 @@ export default function Filescreen() {
               />
             </div>
           );
-        })}
+        }):  (
+          <div className="text-center">Not found</div>
+        )}
       </div>
     </div>
   );

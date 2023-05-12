@@ -5,12 +5,13 @@
   }
   
   .cv-option-button {
-    padding: 0.5rem;
+    padding: 0.4rem;
     border-radius: 25px;
     background: transparent;
     border: 1px solid #C71585;
     margin: 3px;
     cursor: pointer;
+    /* font-size: medium; */
   }
 
   .cv-option-button:focus, .cv-option-button:hover{

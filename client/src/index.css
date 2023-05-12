@@ -56,11 +56,13 @@ select {
 
 .fa-trash {
   color: red;
+  margin: 5px;
+
 }
 
 input {
 
-  margin-top: 10px !important;
+  margin-top: 10px;
   box-shadow: none !important;
 }
 

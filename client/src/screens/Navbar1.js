@@ -15,14 +15,10 @@ export default function Navbar1() {
   const { user } = userstate;
   const dispatch = useDispatch();
 
- 
-
-  
-
   return (
     <div>
         <div className="col-md-12 head">
-          <h2 >Admin Panel</h2>
+          <h2 >Stationary Admin Panel</h2>
 
           <ul className="adminfunctions" id="navMenu">
             <li>

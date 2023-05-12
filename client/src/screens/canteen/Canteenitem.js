@@ -33,7 +33,7 @@ const Canteenitem = (props) => {
        ) : (
          canteenitems.map((canteenitem) => {
            return (
-             <div className="row-md-12" key={canteenitem._id}>
+             <div className="row-md-6" key={canteenitem._id}>
                <div>
                  <Canteenitems canteenitem={canteenitem} />
                </div>

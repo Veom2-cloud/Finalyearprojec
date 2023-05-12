@@ -122,9 +122,9 @@ Router.get("/getAllFiles", async (req, res) => {
 });
 
 Router.post("/getuserfile", async (req, res) => {
-  const { userid } = req.body;
+  const { username } = req.body;
   try {
-    const files = await File.find({ userid: userid })
+    const files = await File.find({ username: username })
     res.send(files);
   } catch (error) {
     return res.status(400).json({ message: "Something went wrong" });
